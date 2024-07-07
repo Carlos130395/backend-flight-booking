@@ -6,12 +6,15 @@ export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
 
   @Post('create')
-  async createClient(@Body('name') name: string, @Body('email') email: string) {
-    return await this.clientsService.createClient(name, email);
+  async createClient(@Body() createClientDto: { name: string; email: string }) {
+    return this.clientsService.createClient(
+      createClientDto.name,
+      createClientDto.email,
+    );
   }
 
   @Get(':id')
   async getClient(@Param('id') id: number) {
-    return await this.clientsService.getClient(id);
+    return this.clientsService.getClient(id);
   }
 }

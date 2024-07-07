@@ -12,10 +12,10 @@ export class ClientsService {
 
   async createClient(name: string, email: string): Promise<Client> {
     const client = this.clientsRepository.create({ name, email });
-    return await this.clientsRepository.save(client);
+    return this.clientsRepository.save(client);
   }
 
-  async getClient(clientId: number): Promise<Client> {
-    return await this.clientsRepository.findOneBy({ id: clientId });
+  async getClient(id: number): Promise<Client> {
+    return this.clientsRepository.findOneBy({ id });
   }
 }
